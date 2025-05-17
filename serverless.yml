@@ -1,0 +1,38 @@
+service: autodesk-product-api
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  httpApi:
+    payload: '2.0'
+  environment:
+    PG_HOST: ${env:PG_HOST}
+    PG_PORT: ${env:PG_PORT}
+    PG_USER: ${env:PG_USER}
+    PG_PASSWORD: ${env:PG_PASSWORD}
+    PG_DATABASE: ${env:PG_DATABASE}
+    REDIS_HOST: ${env:REDIS_HOST}
+    REDIS_PORT: ${env:REDIS_PORT}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+      Resource: "*"
+
+functions:
+  uploadProduct:
+    handler: functions/uploadProduct.uploadProduct
+    events:
+      - httpApi:
+          path: /upload
+          method: POST
+
+  getAllProducts:
+    handler: functions/getAllProducts.getAllProducts
+    events:
+      - http:
+          path: products
+          method: get
+
+plugins:
+  - serverless-offline

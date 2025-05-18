@@ -1,5 +1,7 @@
 service: autodesk-product-api
-
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
 provider:
   name: aws
   runtime: nodejs18.x
@@ -34,5 +36,4 @@ functions:
           path: products
           method: get
 
-plugins:
-  - serverless-offline
+

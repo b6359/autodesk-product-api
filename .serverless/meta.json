@@ -1,0 +1,116 @@
+{
+  "D:\\Projects\\Node\\autodesk-product-api\\serverless.yml": {
+    "versionFramework": "4.14.3",
+    "servicePath": "D:\\Projects\\Node\\autodesk-product-api\\serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "autodesk-product-api",
+      "plugins": [
+        "serverless-dotenv-plugin",
+        "serverless-offline"
+      ],
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "httpApi": {
+          "payload": "2.0"
+        },
+        "environment": {
+          "PG_HOST": "${env:PG_HOST}",
+          "PG_PORT": "${env:PG_PORT}",
+          "PG_USER": "${env:PG_USER}",
+          "PG_PASSWORD": "<REDACTED>",
+          "PG_DATABASE": "${env:PG_DATABASE}",
+          "REDIS_HOST": "${env:REDIS_HOST}",
+          "REDIS_PORT": "${env:REDIS_PORT}"
+        },
+        "iamRoleStatements": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "s3:GetObject"
+            ],
+            "Resource": "*"
+          }
+        ]
+      },
+      "functions": {
+        "uploadProduct": {
+          "handler": "functions/uploadProduct.uploadProduct",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/upload",
+                "method": "POST"
+              }
+            }
+          ]
+        },
+        "getAllProducts": {
+          "handler": "functions/getAllProducts.getAllProducts",
+          "events": [
+            {
+              "http": {
+                "path": "products",
+                "method": "get"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs18.x",
+      "httpApi": {
+        "payload": "2.0"
+      },
+      "environment": {
+        "PG_HOST": "${env:PG_HOST}",
+        "PG_PORT": "${env:PG_PORT}",
+        "PG_USER": "${env:PG_USER}",
+        "PG_PASSWORD": "<REDACTED>",
+        "PG_DATABASE": "${env:PG_DATABASE}",
+        "REDIS_HOST": "${env:REDIS_HOST}",
+        "REDIS_PORT": "${env:REDIS_PORT}"
+      },
+      "iamRoleStatements": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "s3:GetObject"
+          ],
+          "Resource": "*"
+        }
+      ]
+    },
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "error": {
+      "message": "Cannot resolve '${env:PG_HOST}' variable at 'provider.environment.PG_HOST'. No value is available for this variable, and no default value was provided. Please check your variable definitions or provide a default value.",
+      "stack": "Error: Cannot resolve '${env:PG_HOST}' variable at 'provider.environment.PG_HOST'. No value is available for this variable, and no default value was provided. Please check your variable definitions or provide a default value.\n    at _ResolverManager.resolve (file:///C:/Users/DELL/.serverless/releases/4.14.3/package/dist/sf-core.js:695:31882)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async #handlePlaceholderNode (file:///C:/Users/DELL/.serverless/releases/4.14.3/package/dist/sf-core.js:695:30089)\n    at async file:///C:/Users/DELL/.serverless/releases/4.14.3/package/dist/sf-core.js:695:27961\n    at async processNodeAndHandleCompletion (file:///C:/Users/DELL/.serverless/releases/4.14.3/package/dist/sf-core.js:695:16742)",
+      "code": "MISSING_VARIABLE_RESULT"
+    },
+    "serviceRawFile": "service: autodesk-product-api\r\nplugins:\r\n  - serverless-dotenv-plugin\r\n  - serverless-offline\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs18.x\r\n  httpApi:\r\n    payload: '2.0'\r\n  environment:\r\n    PG_HOST: ${env:PG_HOST}\r\n    PG_PORT: ${env:PG_PORT}\r\n    PG_USER: ${env:PG_USER}\r\n    PG_PASSWORD: ${env:PG_PASSWORD}\r\n    PG_DATABASE: ${env:PG_DATABASE}\r\n    REDIS_HOST: ${env:REDIS_HOST}\r\n    REDIS_PORT: ${env:REDIS_PORT}\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n        - s3:GetObject\r\n      Resource: \"*\"\r\n\r\nfunctions:\r\n  uploadProduct:\r\n    handler: functions/uploadProduct.uploadProduct\r\n    events:\r\n      - httpApi:\r\n          path: /upload\r\n          method: POST\r\n\r\n  getAllProducts:\r\n    handler: functions/getAllProducts.getAllProducts\r\n    events:\r\n      - http:\r\n          path: products\r\n          method: get\r\n\r\n\r\n",
+    "command": [
+      "offline"
+    ],
+    "options": {},
+    "orgId": "7bf02016-7755-4ebe-b619-a6c31c640259",
+    "orgName": "bhadreshj",
+    "userId": "CJmMJKVtm46kQfcyhC",
+    "userName": "bhadreshj",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}

@@ -1,3 +1,4 @@
+require('../config/loadEnv');
 const { Pool } = require('pg');
 const { PG_HOST, PG_PORT, PG_USER, PG_PASSWORD, PG_DATABASE } = process.env;
 

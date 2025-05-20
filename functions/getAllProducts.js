@@ -2,6 +2,7 @@ const redis = require('../services/redis');
 
 module.exports.getAllProducts = async () => {
   try {
+    debugger
     const cachedData = await redis.get('products');
     if (cachedData) {
       return {

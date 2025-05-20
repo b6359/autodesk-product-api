@@ -24,6 +24,7 @@ provider:
 functions:
   uploadProduct:
     handler: functions/uploadProduct.uploadProduct
+    timeout: 30
     events:
       - httpApi:
           path: /upload
@@ -31,6 +32,7 @@ functions:
 
   getAllProducts:
     handler: functions/getAllProducts.getAllProducts
+    timeout: 30
     events:
       - http:
           path: products
